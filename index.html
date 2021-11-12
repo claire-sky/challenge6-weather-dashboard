@@ -4,9 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Weather</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css"/>
 </head>
 <body>
-    
+    <header class="container">
+        <div class="row">
+            <h1 class="col text-center bg-primary bg-gradient p-4 text-light">Weather Dashboard</h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row bg-info bg-gradient justify-content-around">
+            <aside class="col-3 bg-light m-2">
+                <div class="search">
+                    <h2 class="text-center">Search for a City:</h2>
+                    <input class="input m-2" type="text" id="city" placeholder="city name">
+                    <button type="submit" class="btn btn-success m-2">Search</button>
+                </div>
+                <span class="border-bottom"></span>
+                <div class="search-history">
+
+                </div>
+            </aside>
+            <main class="col-8 bg-light m-2">
+                <div class="current-weather">
+                    <h2 class="current-city"></h2>
+
+                </div>
+                <div class="five-day-weather">
+                    <h2>5-Day Forecast:</h2>
+                    
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
