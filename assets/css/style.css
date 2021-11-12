@@ -5,3 +5,7 @@
 .input {
     width: 200px;
 }
+
+#search-history {
+    border-top: 55px black;
+}
