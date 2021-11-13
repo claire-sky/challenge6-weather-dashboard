@@ -5,8 +5,7 @@ var lat = 0;
 var lon = 0;
 var cityHistory = [];
 
-// retrieve lat and lon
-var fetchCity = function(event) {
+var cityInput = function(event) {
     event.preventDefault();
 
     // retrieve city name and alert when empty
@@ -14,7 +13,14 @@ var fetchCity = function(event) {
     if(!city) {
         alert("Please enter a city");
     };
+    fetchCity();
 
+}
+
+
+// retrieve lat and lon
+var fetchCity = function() {
+    
     // api call for location
     var locationUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=2e12e8363bb5cb74188b7d051abc37da";
 
@@ -92,13 +98,24 @@ var displayCities = function() {
         btn.name = "formBtn";
         btn.classList.add("btn", "btn-primary", "mx-auto", "m-2", "cityBtn");
         btn.innerHTML = cityHistory[i].city;
+        btn.value = cityHistory[i].city;
+        console.log(btn.value);
+        btn.setAttribute("id", "cityBtn" + [i]);
+        console.log(btn.id);
 
         // add each to aside
         document.getElementById("search-history").appendChild(btn);
         // load weather when button is clicked
-        btn.addEventListener("click", fetchCity);
+        btn.addEventListener("click", autoFill);
     };
 };
 
-fetchButton.addEventListener("click", fetchCity);
+function autoFill() {
+    console.log(this);
+    city = this.value;
+    console.log(city);
+    fetchCity();
+}
+
+fetchButton.addEventListener("click", cityInput);
 displayCities();
