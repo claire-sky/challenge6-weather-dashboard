@@ -184,7 +184,7 @@ var displayCities = function() {
     };
 
     // loop through cities and add to aside
-    for (var i = cityHistory.length-1; i > 0; i--) {
+    for (var i = cityHistory.length - 1; i >= 0; i--) {
         var btn = document.createElement("button");
         btn.type = "button";
         btn.name = "formBtn";
