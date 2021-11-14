@@ -23,17 +23,18 @@ var cityInput = function(event) {
 // retrieve lat and lon
 var fetchCity = function() {
     // api call for location
-    var locationUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=2e12e8363bb5cb74188b7d051abc37da";
+    var locationUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=2e12e8363bb5cb74188b7d051abc37da";
 
     // fetching api and checking response
     fetch(locationUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data) {
+
                 if (data.length === 0) {
                     alert("Please enter a valid city");
                 } else {
-                    lat = data[0].lat;
-                    lon = data[0].lon;
+                    lat = data.coord.lat;
+                    lon = data.coord.lon;
                     saveCity(city);
                     fetchWeather(city);
                 }
@@ -71,6 +72,10 @@ var fetchWeather = function() {
         var currentWeatherDate = document.createElement("h2");
         currentWeatherDate.innerHTML = city + " (" + returnDate + ")";
 
+        // update main with icon
+        var currentIcon = document.createElement("img");
+            currentIcon.src = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
+
         // update main with current temp
         var currentTemp = document.createElement("p");
         currentTemp.innerHTML = "Temp: " + data.current.temp + " °F";
@@ -85,8 +90,24 @@ var fetchWeather = function() {
         
         // update main with current UV index
         var currentUVIndex = document.createElement("p");
-        currentUVIndex.innerHTML = "UV Index: " + data.current.uvi;
-        currentWeather.append(currentWeatherDate, currentTemp, currentWind, currentHumidity, currentUVIndex);
+        currentUVIndex.innerHTML = "UV Index: ";
+        var indexSpan = document.createElement("span");
+        currentUVIndex.append(indexSpan);
+        indexSpan.innerHTML = data.current.uvi;
+        indexSpan.classList.add("text-white", "font-weight-bold", "px-3", "rounded");
+        if (data.current.uvi < 3) {
+            indexSpan.classList.add("bg-success");
+        } else if (data.current.uvi < 6) {
+            indexSpan.classList.add("bg-warning");
+        } else if (data.current.uvi < 8) {
+            indexSpan.classList.add("orange");
+        } else if (data.current.uvi < 11) {
+            indexSpan.classList.add("bg-danger");
+        } else {
+            indexSpan.classList.add("purple");
+        };
+
+        currentWeather.append(currentWeatherDate, currentIcon, currentTemp, currentWind, currentHumidity, currentUVIndex);
 
         for (var i = 1; i < 6; i++) {
             // update main with 5-day dividers for each day
@@ -104,6 +125,10 @@ var fetchWeather = function() {
             var fiveDayDay = document.createElement("p");
             fiveDayDay.innerHTML = returnDateDaily;
 
+            // update 5-day dividers with icon
+            var fiveDayIcon = document.createElement("img");
+            fiveDayIcon.src = "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png";
+
             // update 5-day dividers with temp
             var fiveDayTemp = document.createElement("p");
             fiveDayTemp.innerHTML = "Temp: " + data.daily[i].temp.day + " °F";
@@ -115,7 +140,7 @@ var fetchWeather = function() {
             // update 5-day dividers with humidity
             var fiveDayHumidity = document.createElement("p");
             fiveDayHumidity.innerHTML = "Humidity: " + data.daily[i].humidity + " %";
-            document.getElementById("five-day-div" + [i]).append(fiveDayDay, fiveDayTemp, fiveDayWind, fiveDayHumidity);
+            document.getElementById("five-day-div" + [i]).append(fiveDayDay, fiveDayIcon, fiveDayTemp, fiveDayWind, fiveDayHumidity);
         };
     });
 };
@@ -159,7 +184,7 @@ var displayCities = function() {
     };
 
     // loop through cities and add to aside
-    for (var i = 0; i < cityHistory.length; i++) {
+    for (var i = cityHistory.length-1; i > 0; i--) {
         var btn = document.createElement("button");
         btn.type = "button";
         btn.name = "formBtn";

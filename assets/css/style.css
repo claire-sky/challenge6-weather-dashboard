@@ -1,11 +1,11 @@
-/* .btn {
-    width: 200px;
-}
-
-.input {
-    width: 200px;
-} */
-
 #search-history {
     border-top: 55px black;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.orange {
+    background-color: orange;
 }
