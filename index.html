@@ -9,36 +9,30 @@
     <link rel="stylesheet" href="./assets/css/style.css"/>
 </head>
 <body>
-    <header class="container">
+    <header class="b-container fluid">
         <div class="row">
             <h1 class="col text-center bg-primary bg-gradient p-4 text-light">Weather Dashboard</h1>
         </div>
     </header>
-    <div class="container">
+    <div class="b-container fluid">
         <div class="row bg-info bg-gradient justify-content-around">
-            <aside class="col-3 bg-light m-2">
+            <aside class="col col-3 bg-light m-2 rounded">
                 <div class="search">
                     <h2 class="text-center m-2">Search for a City:</h2>
-                    <input class="input m-2 mx-auto" type="text" id="city" placeholder="city name">
-                    <button type="submit" class="btn btn-success m-2 mx-auto" id="search-btn">Search</button>
+                    <input class="input m-2 mx-auto col" type="text" id="city" placeholder="city name">
+                    <button type="submit" class="btn btn-success m-2 mx-auto col" id="search-btn">Search</button>
                 </div>
-                
-                <div id="search-history">
-
-                </div>
+                <div id="search-history"></div>
             </aside>
-            <main class="col-8 bg-light m-2">
+            <main class="col col-8 bg-light m-2 rounded">
                 <div>
                     <h2 class="current-city"></h2>
                     <div id="current-weather">
-
                     </div>
                 </div>
                 <div>
                     <h2>5-Day Forecast:</h2>
-                    <div id="five-day-weather" class="row justify-content-around">
-
-                    </div>
+                    <div id="five-day-weather" class="row justify-content-around"></div>
                 </div>
             </main>
         </div>
