@@ -127,7 +127,7 @@ var fetchWeather = function() {
 
             // update 5-day dividers with icon
             var fiveDayIcon = document.createElement("img");
-            fiveDayIcon.src = "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png";
+            fiveDayIcon.src = "https://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png";
 
             // update 5-day dividers with temp
             var fiveDayTemp = document.createElement("p");
