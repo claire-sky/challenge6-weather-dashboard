@@ -110,11 +110,11 @@ var fetchWeather = function() {
 
             // update 5-day dividers with wind
             var fiveDayWind = document.createElement("p");
-            fiveDayWind.innerHTML = "Temp Max: " + data.daily[i].wind_speed + " MPH";
+            fiveDayWind.innerHTML = "Wind: " + data.daily[i].wind_speed + " MPH";
 
             // update 5-day dividers with humidity
             var fiveDayHumidity = document.createElement("p");
-            fiveDayHumidity.innerHTML = "Temp Max: " + data.daily[i].humidity + " %";
+            fiveDayHumidity.innerHTML = "Humidity: " + data.daily[i].humidity + " %";
             document.getElementById("five-day-div" + [i]).append(fiveDayDay, fiveDayTemp, fiveDayWind, fiveDayHumidity);
         };
     });
