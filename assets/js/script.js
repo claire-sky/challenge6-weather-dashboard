@@ -74,7 +74,7 @@ var fetchWeather = function() {
 
         // update main with icon
         var currentIcon = document.createElement("img");
-            currentIcon.src = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
+            currentIcon.src = "https://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png";
 
         // update main with current temp
         var currentTemp = document.createElement("p");
